@@ -42,7 +42,7 @@
 
 #include "cpusupport.h"
 #include "sha256.h"
-//#include "warnp.h"
+
 
 #include "crypto_scrypt_smix.h"
 #include "crypto_scrypt_smix_sse2.h"
