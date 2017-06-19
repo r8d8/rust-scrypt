@@ -1,0 +1,12 @@
+[package]
+name = "rust-scrypt"
+version = "0.1.0"
+build = "build.rs"
+links = "scrypt"
+
+[build-dependencies]
+gcc = "0.3"
+
+
+[dependencies]
+emerald-core = {git = "https://github.com/r8d8/emerald-rs.git", branch = "feature/mod"}

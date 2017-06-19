@@ -1,0 +1,28 @@
+cargo:rustc-link-lib=ssl
+cargo:rustc-link-lib=crypto
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+PROFILE = Some("debug")
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-E" "/home/k2/Workshop/rust-scrypt/target/debug/build/openssl-sys-6c107df70444a0f0/out/expando.c"
+exit code: 0
+cargo:rustc-cfg=osslconf="OPENSSL_NO_SSL3_METHOD"
+cargo:conf=OPENSSL_NO_SSL3_METHOD
+cargo:rustc-cfg=ossl110
+cargo:rustc-cfg=ossl110f
+cargo:version=110
+cargo:patch=f
