@@ -20,6 +20,17 @@ pub struct ScryptParams {
     p: u32
 }
 
+impl ScryptParams {
+    ///
+    pub fn new(n: u64, r: u32, p: u32) -> Self {
+        ScryptParams {
+            n: n,
+            r: r,
+            p: p
+        }
+    }
+}
+
 /// `Scrypt` key derivation function
 ///
 /// #Arguments:
@@ -48,11 +59,7 @@ mod tests {
             emerald_core::to_32bytes("fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4");
         let passwd = "1234567890";
         let mut buf = [0u8; 32];
-        let params = ScryptParams {
-            n: 2 as u64,
-            r: 8,
-            p: 1
-        };
+        let params = ScryptParams::new(2, 8, 1);
 
         scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
 
@@ -65,11 +72,7 @@ mod tests {
             emerald_core::to_32bytes("fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4");
         let passwd = "1234567890";
         let mut buf = [0u8; 32];
-        let params = ScryptParams {
-            n: 262144 as u64,
-            r: 8,
-            p: 1
-        };
+        let params = ScryptParams::new(262144, 8, 1);
 
         b.iter(|| scrypt(passwd.as_bytes(), &salt, &params, &mut buf));
     }
