@@ -1,0 +1,8 @@
+== (262144, 8, 1)
+test tests::bench_encrypt_scrypt ... bench: 847,925,928 ns/iter
+
+== (262144, 8, 1) scrypt in  rust-crypto
+1,048,613,490 ns/iter (+/- 71,465,325)
+
+== (262144, 8, 1) create Keyfile with scrypt
+2,083,085,136 ns/iter (+/- 28,494,933)
