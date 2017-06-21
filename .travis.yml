@@ -17,15 +17,11 @@ before_install:
 before_script:
   - export PATH="$PATH":~/.cargo/bin
   - echo "\$ rustfmt --version"
-  - cd rust-scrypt
   - cargo fmt -- --version
-  - cd ..
 script:
   - export RUST_BACKTRACE=1
-  - cd rust-scrypt
   - cargo fmt -- --verbose --write-mode=diff
   - test "$TRAVIS_RUST_VERSION" == nightly || cargo test --verbose
   - test "$TRAVIS_RUST_VERSION" != nightly || cargo test --verbose --features "dev"
   - cargo build --verbose --release
   - cargo doc --no-deps
-  - cd ..
