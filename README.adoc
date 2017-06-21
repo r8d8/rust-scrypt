@@ -1,2 +1,12 @@
-# rust_scrypt
+:rootdir: .
+:icons: font
+:imagesdir: {rootdir}/images
+
+ifdef::env-github,env-browser[:badges:]
+ifdef::env-github,env-browser[:outfilesuffix: .adoc]
+
+ifdef::badges[]
+= rust-scrypt image:https://img.shields.io/travis/r8d8/rust-scrypt/master.svg?style=flat-square["Build Status", link="https://travis-ci.org/r8d8/rust-scrypt"]  image:https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square&maxAge=2592000["License", link="https://github.com/r8d8/rust-scrypt/master/LICENSE"]
+endif::[]
+
 (Will be) Rust bindings for native C Tarsnap`scrypt` algorithm 
