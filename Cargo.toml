@@ -1,11 +1,20 @@
 [package]
 name = "rust-scrypt"
+authors = ["Constantine Kryvomaz <ckryvomaz@gmail.com>"]
+description = "Bindings into C for Tarsnap's `Scrypt` algorithm"
+repository = "https://github.com/r8d8/rust-scrypt"
 version = "0.1.0"
 build = "build.rs"
+keywords = ["rust", "crypto", "scrypt"]
+readme = "../README.adoc"
+license = "Apache-2.0"
 
 [build-dependencies]
 gcc = "0.3"
 
-
 [dependencies]
-emerald-core = {git = "https://github.com/r8d8/emerald-rs.git", branch = "feature/mod"}
+clippy = {version = "0.0", optional = true}
+rustc-serialize = "0.3"
+
+[features]
+dev = ["clippy"]
