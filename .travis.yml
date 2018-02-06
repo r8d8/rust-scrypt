@@ -17,10 +17,10 @@ before_install:
 before_script:
   - export PATH="$PATH":~/.cargo/bin
   - echo "\$ rustfmt --version"
-  - cargo fmt -- --version
+  - cargo fmt -- --version --force
 script:
   - export RUST_BACKTRACE=1
-  - cargo fmt -- --verbose --write-mode=diff
+  - cargo fmt -- --verbose --write-mode=diff --force
   - test "$TRAVIS_RUST_VERSION" == nightly || cargo test --verbose
   - test "$TRAVIS_RUST_VERSION" != nightly || cargo test --verbose --features "dev"
   - cargo build --verbose --release
