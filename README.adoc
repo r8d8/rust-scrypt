@@ -5,10 +5,10 @@
 ifdef::env-github,env-browser[:badges:]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 
-ifdef::badges[]
-= rust-scrypt image:https://img.shields.io/travis/r8d8/rust-scrypt/master.svg?style=flat-square["Build Status", link="https://travis-ci.org/r8d8/rust-scrypt"]  image:https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square&maxAge=2592000["License", link="https://github.com/r8d8/rust-scrypt/master/LICENSE"]
+= rust-scrypt
+ifdef::badges[] 
+image:https://img.shields.io/travis/r8d8/rust-scrypt/master.svg?style=flat-square["Build Status", link="https://travis-ci.org/r8d8/rust-scrypt"]  image:https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square&maxAge=2592000["License", link="https://github.com/r8d8/rust-scrypt/master/LICENSE"]
 endif::[]
 
-== rust-scrypt
 Rust bindings for native C Tarsnap`scrypt` algorithm,
 specified in (RPC 7914) https://tools.ietf.org/html/rfc7914
