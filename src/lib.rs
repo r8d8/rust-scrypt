@@ -24,21 +24,13 @@ extern "C" {
 #[derive(Clone, Copy)]
 pub struct ScryptParams {
     /// Number of iterations
-    n: u64,
+    pub n: u64,
 
     /// Block size for the underlying hash
-    r: u32,
+    pub r: u32,
 
     /// Parallelization factor
-    p: u32,
-}
-
-
-impl ScryptParams {
-    ///
-    pub fn new(n: u64, r: u32, p: u32) -> Self {
-        ScryptParams { n: n, r: r, p: p }
-    }
+    pub p: u32,
 }
 
 /// Derive fixed size key for given `salt` and `passphrase`
@@ -47,7 +39,7 @@ impl ScryptParams {
 /// passwd - password to be derived
 /// salt - byte array with salt
 /// params - parameters for scrypt into `ScryptParams`
-/// output - resulting byte array
+/// output - resulting byte slice
 ///
 pub fn scrypt(passwd: &[u8], salt: &[u8], params: &ScryptParams, output: &mut [u8]) {
     unsafe {
@@ -60,7 +52,7 @@ pub fn scrypt(passwd: &[u8], salt: &[u8], params: &ScryptParams, output: &mut [u
             params.r,
             params.p,
             output.as_mut_ptr(),
-            32,
+            output.len(),
         );
     }
 }
@@ -84,7 +76,26 @@ mod tests {
     }
 
     #[test]
-    fn test_scrypt() {
+    fn test_scrypt_128() {
+        let salt: [u8; 32] = to_bytes(
+            &"fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4"
+                .from_hex()
+                .unwrap(),
+        );
+        let passwd = "1234567890";
+        let mut buf = [0u8; 16];
+        let params = ScryptParams{n: 2, r:8, p:1};
+
+        scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
+
+        assert_eq!(
+            "52a5dacfcf80e5111d2c7fbed177113a",
+            buf.to_hex()
+        );
+    }
+
+    #[test]
+    fn test_scrypt_256() {
         let salt: [u8; 32] = to_bytes(
             &"fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4"
                 .from_hex()
@@ -92,7 +103,7 @@ mod tests {
         );
         let passwd = "1234567890";
         let mut buf = [0u8; 32];
-        let params = ScryptParams::new(2, 8, 1);
+        let params = ScryptParams{n: 2, r:8, p:1};
 
         scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
 
@@ -101,4 +112,25 @@ mod tests {
             buf.to_hex()
         );
     }
+
+    #[test]
+    fn test_scrypt_512() {
+        let salt: [u8; 32] = to_bytes(
+            &"fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4"
+                .from_hex()
+                .unwrap(),
+        );
+        let passwd = "1234567890";
+        let mut buf = [0u8; 64];
+        let params = ScryptParams{n: 2, r:8, p:1};
+
+        scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
+
+        assert_eq!(
+            "52a5dacfcf80e5111d2c7fbed177113a1b48a882b066a017f2c856086680fac7\
+             43ae0dd1ba325be061003ec144f1cad75ddbadd7bb01d22970b9904720b6ba27",
+            buf.to_hex()
+        );
+    }
 }
+
