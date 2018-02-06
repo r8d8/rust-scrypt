@@ -21,7 +21,7 @@ extern "C" {
 }
 
 ///The Scrypt parameter values
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub struct ScryptParams {
     /// Number of iterations
     pub n: u64,
