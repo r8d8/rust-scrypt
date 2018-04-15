@@ -5,8 +5,7 @@ use std::path::PathBuf;
 fn main() {
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
 
-
-    gcc::Config::new()
+    gcc::Build::new()
         .flag("-std=c99")
         .include("ext/scrypt")
         .file("ext/scrypt/crypto_scrypt.c")
