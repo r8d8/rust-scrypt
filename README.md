@@ -1,6 +1,5 @@
 <p align="center">
-  <h2 align="center">Emerald Vault</a></h3>
-  <p align="center">Secure account management for Ethereum Classic</a></p>
+  <h2 align="center">rust-scrypt</a></h3>
   <p align="center">
     <a href="https://travis-ci.org/r8d8/rust-scrypt"><img alt="Travis" src="https://img.shields.io/travis/r8d8/rust-scrypt/master.svg?style=flat-square"></a>
     <a href="https://ci.appveyor.com/project/r8d8/rust-scrypt-dgg5i"><img alt="AppVeyor" src="https://ci.appveyor.com/api/projects/status/m5uvg5yytn6q51qn?svg=true"></a>
@@ -10,7 +9,5 @@
 </p>
 
 ---
-
-## rust-scrypt
 Rust bindings for native C Tarsnap`scrypt` algorithm,
 specified in (RPC 7914) https://tools.ietf.org/html/rfc7914
