@@ -57,7 +57,6 @@ pub fn scrypt(passwd: &[u8], salt: &[u8], params: &ScryptParams, output: &mut [u
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     extern crate rustc_serialize;
@@ -84,14 +83,11 @@ mod tests {
         );
         let passwd = "1234567890";
         let mut buf = [0u8; 16];
-        let params = ScryptParams{n: 2, r:8, p:1};
+        let params = ScryptParams { n: 2, r: 8, p: 1 };
 
         scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
 
-        assert_eq!(
-            "52a5dacfcf80e5111d2c7fbed177113a",
-            buf.to_hex()
-        );
+        assert_eq!("52a5dacfcf80e5111d2c7fbed177113a", buf.to_hex());
     }
 
     #[test]
@@ -103,7 +99,7 @@ mod tests {
         );
         let passwd = "1234567890";
         let mut buf = [0u8; 32];
-        let params = ScryptParams{n: 2, r:8, p:1};
+        let params = ScryptParams { n: 2, r: 8, p: 1 };
 
         scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
 
@@ -122,7 +118,7 @@ mod tests {
         );
         let passwd = "1234567890";
         let mut buf = [0u8; 64];
-        let params = ScryptParams{n: 2, r:8, p:1};
+        let params = ScryptParams { n: 2, r: 8, p: 1 };
 
         scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
 
@@ -133,4 +129,3 @@ mod tests {
         );
     }
 }
-

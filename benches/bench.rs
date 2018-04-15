@@ -1,8 +1,7 @@
 #![feature(test)]
-extern crate test;
-extern crate rustc_serialize;
 extern crate rust_scrypt;
-
+extern crate rustc_serialize;
+extern crate test;
 
 use rustc_serialize::hex::FromHex;
 use rust_scrypt::{scrypt, ScryptParams};
