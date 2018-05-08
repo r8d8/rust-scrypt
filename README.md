@@ -7,4 +7,4 @@
 
 ---
 Rust bindings for native C Tarsnap`scrypt` algorithm,
-specified in (RPC 7914) https://tools.ietf.org/html/rfc7914
+specified in [RFC 7914](https://tools.ietf.org/html/rfc7914)
