@@ -61,8 +61,8 @@ pub fn scrypt(passwd: &[u8], salt: &[u8], params: &ScryptParams, output: &mut [u
 mod tests {
     extern crate rustc_serialize;
 
-    use super::*;
     use self::rustc_serialize::hex::{FromHex, ToHex};
+    use super::*;
 
     fn to_bytes<A, T>(slice: &[T]) -> A
     where

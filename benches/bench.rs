@@ -3,8 +3,8 @@ extern crate rust_scrypt;
 extern crate rustc_serialize;
 extern crate test;
 
-use rustc_serialize::hex::FromHex;
 use rust_scrypt::{scrypt, ScryptParams};
+use rustc_serialize::hex::FromHex;
 use test::Bencher;
 
 fn to_bytes<A, T>(slice: &[T]) -> A
