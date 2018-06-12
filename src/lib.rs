@@ -59,10 +59,12 @@ pub fn scrypt(passwd: &[u8], salt: &[u8], params: &ScryptParams, output: &mut [u
 
 #[cfg(test)]
 mod tests {
-    extern crate rustc_serialize;
+    extern crate hex;
 
-    use self::rustc_serialize::hex::{FromHex, ToHex};
     use super::*;
+    use tests::hex::{decode, encode};
+
+    const SALT: &str = "fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4";
 
     fn to_bytes<A, T>(slice: &[T]) -> A
     where
@@ -76,27 +78,19 @@ mod tests {
 
     #[test]
     fn test_scrypt_128() {
-        let salt: [u8; 32] = to_bytes(
-            &"fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4"
-                .from_hex()
-                .unwrap(),
-        );
+        let salt: [u8; 32] = to_bytes(&decode(SALT).unwrap());
         let passwd = "1234567890";
         let mut buf = [0u8; 16];
         let params = ScryptParams { n: 2, r: 8, p: 1 };
 
         scrypt(passwd.as_bytes(), &salt, &params, &mut buf);
 
-        assert_eq!("52a5dacfcf80e5111d2c7fbed177113a", buf.to_hex());
+        assert_eq!("52a5dacfcf80e5111d2c7fbed177113a", encode(buf.as_ref()));
     }
 
     #[test]
     fn test_scrypt_256() {
-        let salt: [u8; 32] = to_bytes(
-            &"fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4"
-                .from_hex()
-                .unwrap(),
-        );
+        let salt: [u8; 32] = to_bytes(&decode(SALT).unwrap());
         let passwd = "1234567890";
         let mut buf = [0u8; 32];
         let params = ScryptParams { n: 2, r: 8, p: 1 };
@@ -105,17 +99,13 @@ mod tests {
 
         assert_eq!(
             "52a5dacfcf80e5111d2c7fbed177113a1b48a882b066a017f2c856086680fac7",
-            buf.to_hex()
+            encode(buf.as_ref())
         );
     }
 
     #[test]
     fn test_scrypt_512() {
-        let salt: [u8; 32] = to_bytes(
-            &"fd4acb81182a2c8fa959d180967b374277f2ccf2f7f401cb08d042cc785464b4"
-                .from_hex()
-                .unwrap(),
-        );
+        let salt: [u8; 32] = to_bytes(&decode(SALT).unwrap());
         let passwd = "1234567890";
         let mut buf = [0u8; 64];
         let params = ScryptParams { n: 2, r: 8, p: 1 };
@@ -125,7 +115,7 @@ mod tests {
         assert_eq!(
             "52a5dacfcf80e5111d2c7fbed177113a1b48a882b066a017f2c856086680fac7\
              43ae0dd1ba325be061003ec144f1cad75ddbadd7bb01d22970b9904720b6ba27",
-            buf.to_hex()
+            encode(buf.as_ref())
         );
     }
 }
