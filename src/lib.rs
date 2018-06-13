@@ -5,6 +5,8 @@
 #![cfg_attr(feature = "dev", plugin(clippy))]
 #![allow(non_upper_case_globals)]
 
+use std::mem::size_of;
+
 #[link(name = "scrypt")]
 extern "C" {
     pub fn crypto_scrypt(
@@ -31,6 +33,26 @@ pub struct ScryptParams {
 
     /// Parallelization factor
     pub p: u32,
+}
+
+impl ScryptParams {
+    
+    ///Create a new instance of ScryptParams
+    /// 
+    /// # Arguments:
+    /// log_n - The log2 of the Scrypt parameter N
+    /// r - The Scrypt parameter r
+    /// p - The Scrypt parameter p
+    /// 
+    pub fn new(n: u64, r: u32, p: u32) -> ScryptParams {
+        assert!(r > 0);
+        assert!(p > 0);
+        assert!(n > 0);
+        assert!(size_of::<usize>() >= size_of::<u32>() || (r <= std::usize::MAX as u32 && p < std::usize::MAX as u32));
+
+        ScryptParams { n,r, p }
+    }
+
 }
 
 /// Derive fixed size key for given `salt` and `passphrase`
